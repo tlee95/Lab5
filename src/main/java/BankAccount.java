@@ -27,10 +27,31 @@ public class BankAccount {
     private double interestEarned;
 
     public BankAccount(final String name, final BankAccountType accountCategory) {
+        accountType = accountCategory;
+        ownerName = name;
+        Bank.totalAccounts++;
         /*
          * Implement this function
          */
     }
+
+    public void changeName (String name) {
+        ownerName = name;
+    }
+
+    public boolean addBalance(double amount) {
+        accountBalance += amount;
+        return true;
+    }
+
+    public boolean withdrawBalance(double amount) {
+        if ((accountBalance - amount) >= 0) {
+            accountBalance -= amount;
+            return true;
+        }
+        return false;
+    }
+
 
     /*
      * Implement getters and setters as appropriate for private variables.

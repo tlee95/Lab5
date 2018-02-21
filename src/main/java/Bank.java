@@ -26,6 +26,10 @@ public class Bank {
      * @return boolean
      */
     public boolean withdrawMoney(final BankAccount bankAccount, final double amount) {
+        if (bankAccount.withdrawBalance(amount)) {
+            return true;
+        }
+        return false;
         /*
          * Implement this function
          */
@@ -42,6 +46,10 @@ public class Bank {
      * @return boolean
      */
     public boolean depositMoney(final BankAccount bankAccount, final double amount) {
+        if (bankAccount.addBalance(amount)) {
+            return true;
+        }
+        return false;
         /*
          * Implement this function
          */
@@ -61,6 +69,12 @@ public class Bank {
 
     public boolean transferMoney(final BankAccount source, final BankAccount destination,
             final double amount) {
+        if (source.withdrawBalance(amount)){
+            if (destination.addBalance(amount)) {
+                return true;
+            }
+        }
+        return false;
         /*
          * Implement this function
          */
@@ -74,6 +88,7 @@ public class Bank {
      */
 
     public void changeOwnerName(final BankAccount bankAccount, final String name) {
+        bankAccount.changeName(name);
         /*
          * Implement this function
          */
@@ -86,6 +101,7 @@ public class Bank {
      * @return the total number of accounts
      */
     public static int getNumberOfAccount() {
+        return totalAccounts;
         /*
          * Implement this function
          */
